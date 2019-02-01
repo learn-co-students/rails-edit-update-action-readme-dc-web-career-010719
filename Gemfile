@@ -46,3 +46,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'pry'
+gem 'pry-rescue'
+gem 'pry-rails'
