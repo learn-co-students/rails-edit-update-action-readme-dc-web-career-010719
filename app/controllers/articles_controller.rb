@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
+    redirect_to article_path(@article)
   end
 
   def show
@@ -12,10 +13,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new
-    @article.title = params[:title]
-    @article.description = params[:description]
-    @article.save
+    @article = Article.create(title: params[:article][:title], description: params[:article][:description])
+    # byebug
     redirect_to article_path(@article)
   end
 
@@ -26,7 +25,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    @article.update(title: params[:title], description: params[:description])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
     redirect_to article_path(@article)
   end
 
